@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Dashboard UI</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #ffffff; display: flex; height: 100vh; }
+        .sidebar { width: 250px; background-color: #1e1e1e; display: flex; flex-direction: column; padding: 20px; }
+        .sidebar h2 { color: #bb86fc; font-size: 24px; margin-bottom: 40px; }
+        .sidebar a { color: #e0e0e0; text-decoration: none; padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; transition: background 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background-color: #333333; color: #bb86fc; }
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .header h1 { margin: 0; font-size: 28px; }
+        .user-profile { width: 40px; height: 40px; background-color: #bb86fc; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #121212; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .card { background-color: #1e1e1e; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border-top: 4px solid #bb86fc; }
+        .card h3 { margin-top: 0; font-size: 16px; color: #aaaaaa; }
+        .card .value { font-size: 32px; font-weight: bold; margin: 10px 0 0 0; }
+        
+        /* Interactive Element */
+        .btn-glow { margin-top: 40px; padding: 15px 30px; background: linear-gradient(45deg, #bb86fc, #3700b3); border: none; border-radius: 30px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(187, 134, 252, 0.4); }
+        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(187, 134, 252, 0.6); }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Nexus.io</h2>
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Analytics</a>
+        <a href="#">Projects</a>
+        <a href="#">Messages</a>
+        <a href="#">Settings</a>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome back, Alex</h1>
+            <div class="user-profile">A</div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <p class="value">$12,450</p>
+            </div>
+            <div class="card">
+                <h3>Active Users</h3>
+                <p class="value">1,342</p>
+            </div>
+            <div class="card">
+                <h3>New Projects</h3>
+                <p class="value">8</p>
+            </div>
+        </div>
+        <button class="btn-glow">Generate Report</button>
+    </div>
+</body>
+</html>

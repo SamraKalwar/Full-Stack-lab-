@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Timetable</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .timetable-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            border: 1px solid #000;
+        }
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            position: relative;
+        }
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 32px;
+            padding: 10px 0;
+            margin: 0;
+            font-weight: normal;
+        }
+        .header-number {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #eee;
+            width: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border-left: 1px solid #ccc;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        th, td { 
+            border: 1px solid #000; 
+            text-align: center; 
+            vertical-align: middle;
+            height: 100px;
+        }
+        .time-header {
+            font-size: 11px;
+            padding: 5px;
+            font-weight: normal;
+        }
+        .time-sub {
+            display: block;
+            font-size: 10px;
+            color: #666;
+            margin-top: 3px;
+        }
+        .day-col {
+            font-size: 24px;
+            width: 60px;
+            font-weight: normal;
+        }
+        .course { 
+            font-weight: bold; 
+            font-size: 13px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .teacher {
+            font-size: 11px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .room { 
+            font-size: 12px; 
+            display: block;
+        }
+        .footer {
+            font-size: 10px;
+            padding: 2px 5px;
+            border-top: 1px solid #000;
+        }
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="timetable-container">
+        <div class="header-section">
+            <h1 class="header-title">BSCS-V-B (Shift-I)</h1>
+            <div class="header-number">8</div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="day-col"></th>
+                    <th class="time-header">08:00am-09:00am<span class="time-sub">8:00 - 9:00</span></th>
+                    <th class="time-header">09:00am-10:00am<span class="time-sub">9:00 - 10:00</span></th>
+                    <th class="time-header">10:00am-11:00am<span class="time-sub">10:00 - 11:00</span></th>
+                    <th class="time-header">11:00am-12:00pm<span class="time-sub">11:00 - 12:00</span></th>
+                    <th class="time-header">12:00pm-01:00pm<span class="time-sub">12:00 - 1:00</span></th>
+                    <th class="time-header">01:00pm-02:00pm<span class="time-sub">1:00 - 2:00</span></th>
+                    <th class="time-header">02:00pm-03:00pm<span class="time-sub">2:00 - 3:00</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="day-col">Mo</th>
+                    <td></td>
+                    <td>
+                        <span class="teacher">CS-Mr Hafiz Obaid Ullah Khan</span>
+                        <span class="course">Full Stack Web Development</span>
+                        <span class="room">C-205 (Shift-I)</span>
+                    </td>
+                    <td>
+                        <span class="teacher">Math-Dr Waqar Ahmed Khan</span>
+                        <span class="course">Linear Algebra</span>
+                        <span class="room">C-201 (Shift-I)</span>
+                    </td>
+                    <td colspan="2">
+                        <span class="teacher" style="text-align: left; padding-left: 10px;">CS-Ms Kanwal Ejaz</span>
+                        <span class="course">Artificial Intelligence Lab</span>
+                        <span class="room">Lab 5 A Block (Shift-I)</span>
+                    </td>
+                    <td></td>
+                    <td>
+                        <span class="teacher">CS-Ms Warda Aslam</span>
+                        <span class="course">Operating Systems</span>
+                        <span class="room">C-201 (Shift-I)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="day-col">Tu</th>
+                    <td>
+                        <span class="teacher">CS-Ms Warda Aslam</span>
+                        <span class="course">Operating Systems</span>
+                        <span class="room">C-206 (Shift-I)</span>
+                    </td>
+                    <td>
+                        <span class="teacher">CS-Mr Hafiz Obaid Ullah Khan</span>
+                        <span class="course">Full Stack Web Development</span>
+                        <span class="room">C-201 (Shift-I)</span>
+                    </td>
+                    <td>
+                        <span class="teacher">Insh-Ms. Dr Shagufta Idrees (VFT)</span>
+                        <span class="course">Introduction to Management</span>
+                        <span class="room">C-205 (Shift-I)</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="teacher">Math-Dr Waqar Ahmed Khan</span>
+                        <span class="course">Linear Algebra</span>
+                        <span class="room">C-205 (Shift-I)</span>
+                    </td>
+                    <td>
+                        <span class="teacher">CS-Ms Kanwal Ejaz</span>
+                        <span class="course">Advisory Class</span>
+                        <span class="room">C-201 (Shift-I)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="day-col">We</th>
+                    <td></td>
+                    <td>
+                        <span class="teacher">CS-Mr. Shahruk Hassan / CS-Mr. Muhammad Usama Babar</span>
+                        <span class="course">Design and Analysis of Algorithms</span>
+                        <span class="room">Lecture Hall 01</span>
+                    </td>
+                    <td>
+                        <span class="teacher">CS-Mr. Shahruk Hassan / CS-Mr. Muhammad Usama Babar</span>
+                        <span class="course">Design and Analysis of Algorithms</span>
+                        <span class="room">Lecture Hall 01</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="teacher">CS-Ms Kanwal Ejaz</span>
+                        <span class="course">Artificial Intelligence</span>
+                        <span class="room">C-205 (Shift-I)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="day-col">Th</th>
+                    <td></td>
+                    <td>
+                        <span class="teacher">CS-Mr. Shahruk Hassan / CS-Mr. Muhammad Usama Babar</span>
+                        <span class="course">Design and Analysis of Algorithms</span>
+                        <span class="room">Lecture Hall 01</span>
+                    </td>
+                    <td>
+                        <span class="teacher">CS-Mr. Shahruk Hassan / CS-Mr. Muhammad Usama Babar</span>
+                        <span class="course">Design and Analysis of Algorithms</span>
+                        <span class="room">Lecture Hall 01</span>
+                    </td>
+                    <td colspan="3">
+                        <span class="teacher" style="text-align: left; padding-left: 10px;">CS-Ms Warda Aslam</span>
+                        <span class="course">Operating Systems Lab</span>
+                        <span class="room">Lab 13 C Block (3rd Floor) (Shift-I)</span>
+                    </td>
+                    <td>
+                        <span class="teacher">CS-Ms Kanwal Ejaz</span>
+                        <span class="course">Artificial Intelligence</span>
+                        <span class="room">C-202 (Shift-I)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="day-col">Fr</th>
+                    <td></td>
+                    <td>
+                        <span class="teacher">Insh-Ms. Dr Shagufta Idrees (VFT)</span>
+                        <span class="course">Introduction to Management</span>
+                        <span class="room">C-203 (Shift-I)</span>
+                    </td>
+                    <td>
+                        <span class="teacher">Math-Dr Waqar Ahmed Khan</span>
+                        <span class="course">Linear Algebra</span>
+                        <span class="room">C-203 (Shift-I)</span>
+                    </td>
+                    <td colspan="3">
+                        <span class="teacher" style="text-align: left; padding-left: 10px;">CS-Mr Hafiz Obaid Ullah Khan</span>
+                        <span class="course">Full Stack Web Development Lab</span>
+                        <span class="room">Lab 5 A Block (Shift-I)</span>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
