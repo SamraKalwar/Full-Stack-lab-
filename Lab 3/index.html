@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPERSTORE | Ultra-Modern E-Commerce Store</title>
+    
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons 1.11.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Custom Modern Lab 2 & Lab 3 CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+         TOP TICKER & ANNOUNCEMENT BAR
+         ========================================================================== -->
+    <div class="top-ticker-bar py-2 px-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="small d-none d-md-inline">
+                <i class="bi bi-truck-flatbed text-warning me-1"></i> Free Worldwide Express Delivery over <strong>$150</strong>
+            </span>
+            <div class="small d-flex align-items-center gap-2 mx-auto mx-md-0">
+                <span class="promo-tag fw-bold">Flash Sale is LIVE!</span>
+                <button class="btn btn-warning btn-sm py-0 px-2 fw-bold text-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#luckyWheelModal">
+                    <i class="bi bi-gift-fill me-1"></i> Spin Wheel (Win 25% OFF)
+                </button>
+            </div>
+            <div class="d-none d-lg-flex align-items-center gap-3 small">
+                <span class="text-secondary"><i class="bi bi-shield-check text-success me-1"></i> 256-Bit Encrypted</span>
+                <a href="#support" class="text-white-50 text-decoration-none hover-white">24/7 Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         MAIN NAVBAR
+         ========================================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-luxe">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="brand-logo d-flex align-items-center gap-2" href="#">
+                <span class="p-2 rounded-3 bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                </span>
+                <span>HYPER</span>STORE
+            </a>
+
+            <!-- Mobile Actions (Lab Task 5 Flex Utilities) -->
+            <div class="d-flex align-items-center gap-2 d-lg-none">
+                <button class="btn btn-outline-secondary btn-sm rounded-circle p-2" onclick="toggleTheme()">
+                    <i id="mobile-theme-icon" class="bi bi-moon-stars-fill"></i>
+                </button>
+                <button class="btn btn-primary position-relative btn-sm rounded-pill px-3" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                    <i class="bi bi-bag"></i>
+                    <span class="cart-badge-pill cart-count-badge">0</span>
+                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-target="#mainNav" data-bs-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Navbar Links & Search -->
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link-custom active" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link-custom" href="#featured">Why Us</a></li>
+                    <li class="nav-item"><a class="nav-link-custom" href="#products">Catalog</a></li>
+                    <li class="nav-item"><a class="nav-link-custom" href="#reviews">Reviews</a></li>
+                </ul>
+
+                <!-- Real-Time Search Bar -->
+                <div class="d-flex align-items-center me-lg-3 mb-3 mb-lg-0" style="min-width: 250px;">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 rounded-start-pill"><i class="bi bi-search text-muted"></i></span>
+                        <input type="text" id="search-input" class="form-control bg-white border-start-0 rounded-end-pill ps-0" placeholder="Search gear, shoes, gadgets...">
+                    </div>
+                </div>
+
+                <!-- Right Utility Row (Lab Task 5 Flex Utilities) -->
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Dark/Light Theme Switcher -->
+                    <button class="btn btn-light btn-sm rounded-circle border shadow-sm p-2 d-none d-lg-inline-flex" title="Toggle Theme" onclick="toggleTheme()">
+                        <i id="theme-toggle-icon" class="bi bi-moon-stars-fill text-primary"></i>
+                    </button>
+
+                    <!-- Spin Wheel Modal Trigger -->
+                    <button class="btn btn-outline-warning btn-sm rounded-pill d-none d-xl-inline-flex align-items-center gap-1 fw-bold text-dark border-warning" data-bs-toggle="modal" data-bs-target="#luckyWheelModal">
+                        <i class="bi bi-trophy-fill text-warning"></i> Lucky Wheel
+                    </button>
+
+                    <!-- Auth State Container -->
+                    <div id="auth-nav-container"></div>
+
+                    <!-- Cart Drawer Trigger Button -->
+                    <button class="btn btn-primary d-none d-lg-inline-flex align-items-center gap-2 rounded-pill px-3 shadow-sm position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="bi bi-bag-check-fill"></i>
+                        <span class="fw-bold">Cart</span>
+                        <span class="cart-badge-pill cart-count-badge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+         HERO SECTION WITH COUNTDOWN & 3D GLOW
+         ========================================================================== -->
+    <section id="hero" class="py-4 py-lg-5">
+        <div class="container">
+            <div class="hero-wrapper p-4 p-md-5">
+                <div class="hero-glow-blob-1"></div>
+                <div class="hero-glow-blob-2"></div>
+                
+                <div class="row align-items-center gy-4 position-relative z-2">
+                    <div class="col-lg-6">
+                        <!-- Top Pill -->
+                        <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-20 px-3 py-1 rounded-pill mb-3">
+                            <span class="feature-badge fw-bold text-warning small">LIMITED DROP 2026</span>
+                        </div>
+
+                        <h1 class="display-3 fw-bold text-white mb-3" style="line-height: 1.1;">
+                            Redefining Modern Lifestyle & Tech.
+                        </h1>
+                        <p class="lead text-white-50 mb-4" style="font-size: 1.1rem;">
+                            Step into the future of premium acoustics, bespoke apparel, and precision chronographs. Engineered for those who demand excellence.
+                        </p>
+
+                        <!-- Live Flash Countdown -->
+                        <div class="mb-4">
+                            <div class="countdown-box">
+                                <span class="small fw-semibold text-white-50"><i class="bi bi-stopwatch-fill text-danger me-1"></i> Flash Ends In:</span>
+                                <span class="countdown-unit" id="cd-hours">05</span>
+                                <span class="text-white-50 fw-bold">:</span>
+                                <span class="countdown-unit" id="cd-minutes">42</span>
+                                <span class="text-white-50 fw-bold">:</span>
+                                <span class="countdown-unit" id="cd-seconds">19</span>
+                            </div>
+                        </div>
+
+                        <!-- Lab Task 5: Button Row with Bootstrap Flex Utilities -->
+                        <div class="d-flex flex-wrap align-items-center gap-3">
+                            <a href="#products" class="btn btn-primary btn-lg rounded-pill px-4 fw-bold shadow">
+                                <i class="bi bi-cart3 me-2"></i> Explore Store
+                            </a>
+                            <button class="btn btn-outline-light btn-lg rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#luckyWheelModal">
+                                <i class="bi bi-stars me-2 text-warning"></i> Spin & Win
+                            </button>
+                        </div>
+
+                        <!-- Trust Metrics (Lab Task 5 Flex Row) -->
+                        <div class="d-flex flex-wrap align-items-center gap-4 mt-5 pt-3 border-top border-white border-opacity-10">
+                            <div>
+                                <h3 class="text-white fw-bold mb-0">20K+</h3>
+                                <small class="text-white-50">Verified Customers</small>
+                            </div>
+                            <div class="vr bg-white bg-opacity-25 d-none d-sm-block"></div>
+                            <div>
+                                <h3 class="text-white fw-bold mb-0">4.9 ★</h3>
+                                <small class="text-white-50">Top App Rating</small>
+                            </div>
+                            <div class="vr bg-white bg-opacity-25 d-none d-sm-block"></div>
+                            <div>
+                                <h3 class="text-white fw-bold mb-0">100%</h3>
+                                <small class="text-white-50">Original Guaranteed</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Showcase -->
+                    <div class="col-lg-6 text-center position-relative">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80" alt="Hero Headset" class="img-fluid rounded-4 shadow-lg" style="max-height: 400px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         LAB TASK 1: THREE-ITEM FLEX ROW WITH FLEX-WRAP & GAP
+         ========================================================================== -->
+    <section id="featured" class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <!-- Lab Task 3: Section Title with decorative ::after underline -->
+                <h2 class="section-title">The HyperStore Advantage</h2>
+                <p class="text-muted">Experience luxury e-commerce designed with zero friction</p>
+            </div>
+
+            <!-- Lab Task 1: 3-Item Flex row using flex-wrap and gap -->
+            <div class="custom-flex-row">
+                <!-- Feature 1 -->
+                <div class="custom-flex-item">
+                    <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-4 d-inline-flex mb-3 fs-3">
+                        <i class="bi bi-airplane-engines-fill"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Priority Express Dispatch</h5>
+                    <p class="text-muted small mb-3">
+                        Orders processed within 60 minutes with end-to-end live tracking and temperature-safe packaging.
+                    </p>
+                    <div class="d-flex align-items-center text-primary fw-semibold small">
+                        <span>Check delivery zones</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="custom-flex-item">
+                    <div class="p-3 bg-success bg-opacity-10 text-success rounded-4 d-inline-flex mb-3 fs-3">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Bank-Grade 256-Bit Security</h5>
+                    <p class="text-muted small mb-3">
+                        PCI-DSS compliant encrypted checkouts with instant verification, biometrics, and zero fraud liability.
+                    </p>
+                    <div class="d-flex align-items-center text-success fw-semibold small">
+                        <span>Security certifications</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="custom-flex-item">
+                    <div class="p-3 bg-warning bg-opacity-10 text-warning rounded-4 d-inline-flex mb-3 fs-3">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">30-Day Money Back Guarantee</h5>
+                    <p class="text-muted small mb-3">
+                        Try our products in person. If you're not 100% thrilled, return for a full refund without questions.
+                    </p>
+                    <div class="d-flex align-items-center text-warning fw-semibold small">
+                        <span>Refund policy</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         PRODUCT CATALOG SECTION (Lab Task 2, 4, 5, 6)
+         ========================================================================== -->
+    <section id="products" class="py-5 bg-white border-top border-bottom">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4">
+                <div>
+                    <!-- Lab Task 3: ::after pseudo-element underline -->
+                    <h2 class="section-title mb-1">Featured Products</h2>
+                    <p class="text-muted mb-0">Discover high-precision craftsmanship across all categories</p>
+                </div>
+
+                <!-- Category Filters (Lab Task 5 Flex Utility Row) -->
+                <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+                    <button class="category-pill active" data-category="all">All Items</button>
+                    <button class="category-pill" data-category="electronics">Electronics</button>
+                    <button class="category-pill" data-category="fashion">Fashion</button>
+                    <button class="category-pill" data-category="accessories">Accessories</button>
+                    <button class="category-pill" data-category="footwear">Footwear</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Product Grid -->
+            <div id="products-grid" class="row g-4">
+                <!-- Injected via app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         CUSTOMER REVIEWS SECTION (Lab Task 3 & Lab Task 6 :nth-child)
+         ========================================================================== -->
+    <section id="reviews" class="py-5">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+                <div>
+                    <h2 class="section-title mb-1">Verified Customer Reviews</h2>
+                    <p class="text-muted mb-0">Real opinions from customers who ordered and received their items</p>
+                </div>
+                <button class="btn btn-primary rounded-pill px-4 fw-semibold mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+                    <i class="bi bi-pencil-square me-2"></i> Write a Review
+                </button>
+            </div>
+
+            <!-- Lab Task 6: Reviews Grid with :nth-child(even) alternating card styles -->
+            <div id="reviews-grid" class="row g-4">
+                <!-- Injected via app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         OFFCANVAS CART DRAWER (WITH FREE SHIPPING METER & EDIT CART)
+         ========================================================================== -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold d-flex align-items-center gap-2" id="cartOffcanvasLabel">
+                <i class="bi bi-bag-check-fill text-primary"></i> Shopping Cart
+            </h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column p-3">
+            <!-- Free Shipping Progress Meter -->
+            <div class="shipping-progress-box mb-3">
+                <div class="d-flex justify-content-between small mb-1">
+                    <span id="shipping-progress-msg">Add $150 to unlock <strong>FREE Express Delivery</strong>!</span>
+                </div>
+                <div class="progress" style="height: 7px;">
+                    <div id="shipping-progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Cart Items Scroll Area -->
+            <div id="cart-items-container" class="flex-grow-1 overflow-y-auto mb-3"></div>
+
+            <!-- Cart Footer Summary -->
+            <div id="cart-footer-panel" class="border-top pt-3">
+                <!-- Promo Code -->
+                <div class="input-group mb-2">
+                    <input type="text" id="promo-input" class="form-control form-control-sm text-uppercase" placeholder="Coupon (e.g. LUCKY25, DISCOUNT10)">
+                    <button class="btn btn-dark btn-sm" id="apply-promo-btn" type="button">Apply</button>
+                </div>
+                <div id="promo-message"></div>
+
+                <!-- Price Breakdown -->
+                <div class="d-flex justify-content-between small text-muted mb-1 mt-2">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal" class="fw-semibold text-dark">$0.00</span>
+                </div>
+                <div class="d-flex justify-content-between small text-muted mb-1">
+                    <span>Discount:</span>
+                    <span id="cart-discount" class="text-success fw-semibold">-$0.00</span>
+                </div>
+                <div class="d-flex justify-content-between small text-muted mb-2">
+                    <span>Shipping:</span>
+                    <span id="cart-shipping" class="fw-semibold text-dark">$0.00</span>
+                </div>
+                <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2 mb-3">
+                    <span>Total:</span>
+                    <span id="cart-total" class="text-primary">$0.00</span>
+                </div>
+
+                <!-- Lab Task 5: Button Flex Utilities -->
+                <div class="d-flex flex-column gap-2">
+                    <button class="btn btn-primary w-100 py-2 rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2 shadow" onclick="openCheckoutModal()">
+                        <i class="bi bi-credit-card"></i> Proceed to Checkout
+                    </button>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary btn-sm rounded-pill flex-grow-1" data-bs-dismiss="offcanvas">Continue Shopping</button>
+                        <button class="btn btn-outline-danger btn-sm rounded-pill" onclick="clearCart()">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         CHECKOUT MODAL WITH LIVE CREDIT CARD SIMULATOR
+         ========================================================================== -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-shield-lock me-2"></i>Secure Express Checkout</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="checkout-form">
+                        <div class="row g-4">
+                            <!-- Shipping & Live Card Simulator -->
+                            <div class="col-md-7">
+                                <h6 class="fw-bold mb-3"><i class="bi bi-geo-alt text-primary me-2"></i>Shipping Details</h6>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label class="form-label small fw-semibold">Full Name</label>
+                                        <input type="text" id="checkout-name" class="form-control" placeholder="John Doe" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold">Email Address</label>
+                                        <input type="email" id="checkout-email" class="form-control" placeholder="john@example.com" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold">Phone Number</label>
+                                        <input type="tel" id="checkout-phone" class="form-control" placeholder="+92 300 1234567" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label small fw-semibold">Street Address</label>
+                                        <input type="text" id="checkout-address" class="form-control" placeholder="House 42, Block B, Main Boulevard" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold">City</label>
+                                        <input type="text" id="checkout-city" class="form-control" placeholder="Lahore / New York" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-semibold">Postal Code</label>
+                                        <input type="text" id="checkout-zip" class="form-control" placeholder="54000" required>
+                                    </div>
+                                </div>
+
+                                <!-- Live Interactive Credit Card Simulator -->
+                                <h6 class="fw-bold mt-4 mb-3"><i class="bi bi-credit-card text-primary me-2"></i>Payment Details</h6>
+                                
+                                <div class="credit-card-preview mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <span class="fw-bold fs-5">HYPER PAY</span>
+                                        <i class="bi bi-wifi fs-4"></i>
+                                    </div>
+                                    <div class="fs-4 font-monospace mb-4" id="live-card-number">•••• •••• •••• ••••</div>
+                                    <div class="d-flex justify-content-between small">
+                                        <div>
+                                            <div class="text-white-50" style="font-size: 0.65rem;">CARD HOLDER</div>
+                                            <span class="fw-bold" id="live-card-holder">YOUR FULL NAME</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-white-50" style="font-size: 0.65rem;">EXPIRES</div>
+                                            <span class="fw-bold" id="live-card-expiry">MM/YY</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-2">
+                                    <div class="col-12">
+                                        <input type="text" id="card-num-input" class="form-control form-control-sm" placeholder="Card Number (e.g. 4532 8920 1204 9021)" maxlength="19">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="card-name-input" class="form-control form-control-sm" placeholder="Cardholder Name">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="card-exp-input" class="form-control form-control-sm" placeholder="Expiry MM/YY" maxlength="5">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Summary Table (Lab Task 6: Alternating rows) -->
+                            <div class="col-md-5">
+                                <div class="bg-light p-3 rounded-4 border">
+                                    <h6 class="fw-bold mb-3">Order Items</h6>
+                                    <div class="table-responsive">
+                                        <table class="table cart-table align-middle">
+                                            <thead>
+                                                <tr class="small text-muted">
+                                                    <th>Product</th>
+                                                    <th class="text-center">Qty</th>
+                                                    <th class="text-end">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="checkout-items-preview"></tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2 mt-2">
+                                        <span>Total Amount:</span>
+                                        <span id="checkout-final-total" class="text-primary">$0.00</span>
+                                    </div>
+
+                                    <!-- Lab Task 5 Flex Utility buttons -->
+                                    <div class="d-flex flex-column gap-2 mt-4">
+                                        <button type="submit" class="btn btn-success py-2 rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2 shadow">
+                                            <i class="bi bi-check2-circle"></i> Place Order Now
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" data-bs-dismiss="modal">Back to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         ORDER CONFIRMATION RECEIPT MODAL
+         ========================================================================== -->
+    <div class="modal fade" id="orderConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-body p-4" id="receipt-summary-content"></div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-primary w-100 rounded-pill" data-bs-dismiss="modal">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SPIN THE LUCKY WHEEL GAMIFICATION MODAL (MAZAY KA FEATURE!)
+         ========================================================================== -->
+    <div class="modal fade" id="luckyWheelModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content spin-wheel-card border-0 shadow-2xl p-4 text-center">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="modal-title fw-bold text-warning mb-0"><i class="bi bi-gift-fill me-2"></i>Lucky Discount Wheel</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <p class="text-white-50 small mb-4">Spin the wheel to win up to <strong>25% OFF</strong> on your entire shopping cart!</p>
+                
+                <div class="position-relative py-3">
+                    <div class="wheel-pointer"></div>
+                    <div class="wheel-circle" id="lucky-wheel-disc"></div>
+                </div>
+
+                <div id="spin-result-msg"></div>
+
+                <button class="btn btn-warning btn-lg fw-bold rounded-pill mt-4 text-dark shadow w-100" id="spin-btn" onclick="spinLuckyWheel()">
+                    🎰 Spin the Wheel Now!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         AUTHENTICATION MODAL (LOGIN & SIGNUP)
+         ========================================================================== -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 pb-0">
+                    <ul class="nav nav-pills nav-fill w-100" id="authTab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active fw-bold" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-panel">Sign In</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link fw-bold" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup-panel">Register</button>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn-close ms-2" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <div class="tab-content">
+                        <!-- Login Form -->
+                        <div class="tab-pane fade show active" id="login-panel">
+                            <form id="login-form">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Email address</label>
+                                    <input type="email" class="form-control" id="login-email" placeholder="name@example.com" required value="alex@example.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Password</label>
+                                    <input type="password" class="form-control" id="login-password" placeholder="••••••••" required value="password123">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-bold shadow-sm">Sign In</button>
+                            </form>
+                        </div>
+
+                        <!-- Signup Form -->
+                        <div class="tab-pane fade" id="signup-panel">
+                            <form id="signup-form">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Full Name</label>
+                                    <input type="text" class="form-control" id="signup-name" placeholder="John Doe" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Email address</label>
+                                    <input type="email" class="form-control" id="signup-email" placeholder="name@example.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Password</label>
+                                    <input type="password" class="form-control" id="signup-password" placeholder="Min. 8 characters" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-bold shadow-sm">Create Account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         PRODUCT QUICK VIEW MODAL
+         ========================================================================== -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="quickViewTitle">Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4" id="quickViewBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         WRITE A REVIEW MODAL
+         ========================================================================== -->
+    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-star me-2"></i>Write a Customer Review</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="review-form">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Your Name</label>
+                            <input type="text" class="form-control" id="review-name" placeholder="Zainab Malik" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Rating</label>
+                            <select class="form-select" id="review-rating" required>
+                                <option value="5" selected>★★★★★ (5 Stars - Outstanding)</option>
+                                <option value="4">★★★★☆ (4 Stars - Great)</option>
+                                <option value="3">★★★☆☆ (3 Stars - Average)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Headline</label>
+                            <input type="text" class="form-control" id="review-title" placeholder="Best headphones ever!" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Your Comments</label>
+                            <textarea class="form-control" id="review-comment" rows="3" placeholder="Share your experience..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Social Proof Notification Popups -->
+    <div id="live-activity-toast" class="live-activity-toast"></div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1090;"></div>
+
+    <!-- Bootstrap 5.3.3 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Application JS -->
+    <script src="app.js"></script>
+</body>
+</html>
